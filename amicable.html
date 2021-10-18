@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Assignment 6: Amicable Numbers</title>
+  <link rel="stylesheet" href="amisty.css">
+  
+</head>
+
+
+<body>
+
+<h2>Are the two numbers amicable?</h2>
+
+<form>
+    First Number <input type = "text" id = "firstNum"><br/><br/>
+    Second Number <input type = "text" id = "secondNum"><br/><br/>
+    <input type = "button" value = "Enter" onclick = "calculateAmicable()">
+</form>
+
+<div class = "answer">
+<script language = "javascript">
+
+function calculateAmicable() {
+    var firstNumber, secondNumber;
+    firstNumber = document.getElementById('firstNum').value;
+    secondNumber = document.getElementById('secondNum').value;
+    
+    var firstFactors = [];
+    var secondFactors = [];
+    var fF, sF;
+    
+    findFactors(firstNumber, firstFactors);
+    findFactors(secondNumber, secondFactors);
+  
+    
+    
+    for (var i = 0; i < firstFactors.length; i++){
+        if (i == 0){
+          fF = firstFactors[i] + " ";
+          continue;
+        }
+        fF = fF + firstFactors[i] + " ";
+    }
+    for (var i = 0; i < secondFactors.length; i++){
+      if (i == 0){
+        sF = secondFactors[i] + " ";
+        continue;
+      }
+        sF = sF + secondFactors[i] + " ";
+    }
+    
+    alert("the factors of " + firstNumber + " are: " + fF + "\nthe factors of " + secondNumber +" are: " + sF);
+    
+    if(checkAmicable(firstNumber, secondNumber, firstFactors, secondFactors)){
+        document.getElementById("answer").innerHTML = "<br>" + firstNumber + " and " + secondNumber + " are amicable!";
+    }
+    else{
+        document.getElementById("answer").innerHTML = "<br>" + firstNumber + " and " + secondNumber + " are not amicable!";
+    }
+}
+
+function findFactors(number, factors){
+  
+  for (var i = 1; i < number; i ++) {
+      if(isAFactor(i,number)){
+          factors.push(i);
+      }
+  }  
+}
+
+
+function isAFactor(x,y){
+    if (y % x == 0){
+      return true;
+    }
+    else {
+      return false;
+    }
+}
+
+function checkAmicable(firstNum, secondNum, firstFact, secondFact){
+    var sumFirst = 0;
+    var sumSecond = 0;
+    
+    for (var i = 0; i < firstFact.length; i++){
+        sumFirst = sumFirst + firstFact[i];
+    }
+    
+    for (var i = 0; i < secondFact.length; i++){
+        sumSecond = sumSecond + secondFact[i];
+    }
+    
+    if(sumFirst == secondNum && sumSecond == firstNum){
+        return true;
+    }
+    else{
+        return false;
+    }
+    
+}
+
+</script>
+</div>
+
+<div class = "answer" id = "answer">
+  <br>
+  The Answer
+</div>
+
+</body>
+
+
+
+</html>

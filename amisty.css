@@ -1,0 +1,18 @@
+body{
+  background-color: #70D2E1;
+}
+.answer, h2{
+    text-align:center;
+}
+form{
+    text-align:center;
+    border: 2px solid #black;
+}
+input[type=button]{
+  background-color: black;
+  color: white;
+  width: 10%;
+}
+input[type=button]:hover{
+  background-color: grey;
+}
